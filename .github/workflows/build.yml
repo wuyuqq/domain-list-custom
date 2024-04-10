@@ -28,6 +28,7 @@ jobs:
 
       - name: Generate Apple
         run: |
+          mkdir -p ./tmp/ ./domains/
           curl -sSL ${Apple} | grep -Ev '#|IP-CIDR' | sed '/^\s*$/d' > ./domains/Apple.list
 
       - name: Git push assets to `domains` branch
