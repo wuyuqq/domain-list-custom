@@ -54,10 +54,6 @@ jobs:
         run: |
           curl -sSL ${private_cn} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private_cn.list
 
-      - name: Generate private_!cn
-        run: |
-          curl -sSL ${private_!cn} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private_!cn.list
-
       - name: Generate Emby
         run: |
           curl -sSL ${Emby} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/Emby.list
