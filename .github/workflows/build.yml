@@ -29,7 +29,7 @@ jobs:
       - name: Generate Apple
         run: |
           mkdir -p ./tmp/ ./domains/
-          curl -sSL ${Apple} | grep -E 'DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD' | sed '/^\s*$/d' > ./domains/Apple.list
+          curl -sSL ${Apple} | grep -E grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/Apple.list
 
       - name: Git push assets to `domains` branch
         run: |
