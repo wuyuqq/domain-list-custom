@@ -15,7 +15,26 @@ jobs:
       - name: Set variables
         run: |
           echo "update_version=$(date -d '+8 hours' +%Y-%m-%d)" >> ${GITHUB_ENV}
-          echo "Apple=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.list" >> $GITHUB_ENV
+          echo "LocalAreaNetwork=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list" >> $GITHUB_ENV
+          echo "private_cn=https://raw.githubusercontent.com/wuyuqq/247cp/master/singbox/private_cn.list" >> $GITHUB_ENV
+          echo "private_!cn=https://raw.githubusercontent.com/wuyuqq/247cp/master/singbox/private_!cn.list" >> $GITHUB_ENV
+          echo "Emby=https://raw.githubusercontent.com/wuyuqq/247cp/master/singbox/Emby.list" >> $GITHUB_ENV
+          echo "GoogleCN=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list" >> $GITHUB_ENV
+          echo "GoogleFCM=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list" >> $GITHUB_ENV
+          echo "Bing=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list" >> $GITHUB_ENV
+          echo "OneDrive=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list" >> $GITHUB_ENV
+          echo "Microsoft=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list" >> $GITHUB_ENV
+          echo "Apple=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list" >> $GITHUB_ENV
+          echo "Telegram=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list" >> $GITHUB_ENV
+          echo "OpenAi=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list" >> $GITHUB_ENV
+          echo "YouTube=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list" >> $GITHUB_ENV
+          echo "ProxyMedia=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list" >> $GITHUB_ENV
+          echo "ProxyGFWlist=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list" >> $GITHUB_ENV
+          echo "ChinaDomain=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list" >> $GITHUB_ENV
+          echo "ChinaCompanyIp=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list" >> $GITHUB_ENV
+          echo "Spotify=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Spotify.list" >> $GITHUB_ENV
+          echo "TikTok=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/TikTok.list" >> $GITHUB_ENV
+          echo "Speedtest=https://raw.githubusercontent.com/dler-io/Rules/master/Surge/Surge%203/Provider/Speedtest.list" >> $GITHUB_ENV
         shell: bash
 
       - name: Checkout codebase
@@ -26,10 +45,115 @@ jobs:
         with:
           go-version-file: ./go.mod
 
-      - name: Generate Apple
+      - name: Generate LocalAreaNetwork
         run: |
           mkdir -p ./tmp/ ./domains/
+          curl -sSL ${LocalAreaNetwork} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/LocalAreaNetwork.list
+
+      - name: Generate private_cn
+        run: |
+          curl -sSL ${private_cn} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private_cn.list
+
+      - name: Generate private_!cn
+        run: |
+          curl -sSL ${private_!cn} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private_!cn.list
+
+      - name: Generate Emby
+        run: |
+          curl -sSL ${Emby} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/Emby.list
+
+      - name: Generate GoogleCN
+        run: |
+          curl -sSL ${GoogleCN} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/GoogleCN.list
+
+      - name: Generate GoogleFCM
+        run: |
+          curl -sSL ${GoogleFCM} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/GoogleFCM.list
+
+      - name: Generate Bing
+        run: |
+          curl -sSL ${Bing} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/Bing.list
+
+      - name: Generate OneDrive
+        run: |
+          curl -sSL ${OneDrive} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/OneDrive.list
+
+      - name: Generate Microsoft
+        run: |
+          curl -sSL ${Microsoft} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/Microsoft.list
+
+      - name: Generate Apple
+        run: |
           curl -sSL ${Apple} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/Apple.list
+
+      - name: Generate Telegram
+        run: |
+          curl -sSL ${Telegram} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/Telegram.list
+
+      - name: Generate OpenAi
+        run: |
+          curl -sSL ${OpenAi} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/OpenAi.list
+
+      - name: Generate YouTube
+        run: |
+          curl -sSL ${YouTube} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/YouTube.list
+
+      - name: Generate ProxyMedia
+        run: |
+          curl -sSL ${ProxyMedia} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/ProxyMedia.list
+
+      - name: Generate ProxyGFWlist
+        run: |
+          curl -sSL ${ProxyGFWlist} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/ProxyGFWlist.list
+
+      - name: Generate ChinaDomain
+        run: |
+          curl -sSL ${ChinaDomain} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/ChinaDomain.list
+
+      - name: Generate ChinaCompanyIp
+        run: |
+          curl -sSL ${ChinaCompanyIp} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/ChinaCompanyIp.list
+
+      - name: Generate Spotify
+        run: |
+          curl -sSL ${Spotify} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/Spotify.list
+
+      - name: Generate TikTok
+        run: |
+          curl -sSL ${TikTok} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/TikTok.list
+
+      - name: Generate Speedtest
+        run: |
+          curl -sSL ${Speedtest} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/Speedtest.list
+
+      - name: Generate Apple
+        run: |
+          curl -sSL ${Apple} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/Apple-ip.list
+
+      - name: Generate ChinaDomain
+        run: |
+          curl -sSL ${ChinaDomain} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/ChinaDomain-ip.list
+
+      - name: Generate GoogleFCM
+        run: |
+          curl -sSL ${GoogleFCM} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/GoogleFCM-ip.list
+
+      - name: Generate LocalAreaNetwork
+        run: |
+          curl -sSL ${LocalAreaNetwork} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/LocalAreaNetwork-ip.list
+
+      - name: Generate ProxyGFWlist
+        run: |
+          curl -sSL ${ProxyGFWlist} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/ProxyGFWlist-ip.list
+
+      - name: Generate ProxyMedia
+        run: |
+          curl -sSL ${ProxyMedia} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/ProxyMedia-ip.list
+
+      - name: Generate Telegram
+        run: |
+          curl -sSL ${Telegram} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/Telegram-ip.list
+
 
       - name: Git push assets to `domains` branch
         run: |
