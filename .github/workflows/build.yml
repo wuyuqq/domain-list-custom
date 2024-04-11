@@ -16,8 +16,8 @@ jobs:
         run: |
           echo "update_version=$(date -d '+8 hours' +%Y-%m-%d)" >> ${GITHUB_ENV}
           echo "LocalAreaNetwork=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list" >> $GITHUB_ENV
-          echo "private_cn=https://raw.githubusercontent.com/wuyuqq/247cp/master/singbox/private_cn.list" >> $GITHUB_ENV
-          echo "private_proxy=https://raw.githubusercontent.com/wuyuqq/247cp/master/singbox/private_!cn.list" >> $GITHUB_ENV
+          echo "private-cn=https://raw.githubusercontent.com/wuyuqq/247cp/master/singbox/private_cn.list" >> $GITHUB_ENV
+          echo "private-proxy=https://raw.githubusercontent.com/wuyuqq/247cp/master/singbox/private_!cn.list" >> $GITHUB_ENV
           echo "Emby=https://raw.githubusercontent.com/wuyuqq/247cp/master/singbox/Emby.list" >> $GITHUB_ENV
           echo "GoogleCN=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list" >> $GITHUB_ENV
           echo "GoogleFCM=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list" >> $GITHUB_ENV
@@ -50,13 +50,13 @@ jobs:
           mkdir -p ./tmp/ ./domains/
           curl -sSL ${LocalAreaNetwork} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/LocalAreaNetwork.list
 
-      - name: Generate private_cn
+      - name: Generate private-cn
         run: |
-          curl -sSL ${private_cn} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private-cn.list
+          curl -sSL ${private-cn} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private-cn.list
 
-      - name: Generate private_proxy
+      - name: Generate private-proxy
         run: |
-          curl -sSL ${private_proxy} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private-proxy.list
+          curl -sSL ${private-proxy} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private-proxy.list
 
       - name: Generate Emby
         run: |
@@ -162,7 +162,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b domains
-          git add . && git commit -m "规则列表更新于 ${update_version}"
+          git add . && git commit -m "域名列表更新于 ${update_version}"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u origin domains
 
