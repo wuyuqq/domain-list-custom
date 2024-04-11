@@ -52,11 +52,11 @@ jobs:
 
       - name: Generate private_cn
         run: |
-          curl -sSL ${private_cn} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private-cn.list
+          curl -sSL ${private_cn} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/cn.list
 
       - name: Generate private_proxy
         run: |
-          curl -sSL ${private_proxy} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private-proxy.list
+          curl -sSL ${private_proxy} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/proxy.list
 
       - name: Generate Emby
         run: |
