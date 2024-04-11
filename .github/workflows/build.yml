@@ -17,7 +17,7 @@ jobs:
           echo "update_version=$(date -d '+8 hours' +%Y-%m-%d)" >> ${GITHUB_ENV}
           echo "LocalAreaNetwork=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list" >> $GITHUB_ENV
           echo "private_cn=https://raw.githubusercontent.com/wuyuqq/247cp/master/singbox/private_cn.list" >> $GITHUB_ENV
-          echo "ProxyList=https://raw.githubusercontent.com/wuyuqq/247cp/master/singbox/private_!cn.list" >> $GITHUB_ENV
+          echo "private_!cn=https://raw.githubusercontent.com/wuyuqq/247cp/master/singbox/private_!cn.list" >> $GITHUB_ENV
           echo "Emby=https://raw.githubusercontent.com/wuyuqq/247cp/master/singbox/Emby.list" >> $GITHUB_ENV
           echo "GoogleCN=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list" >> $GITHUB_ENV
           echo "GoogleFCM=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list" >> $GITHUB_ENV
@@ -54,9 +54,9 @@ jobs:
         run: |
           curl -sSL ${private_cn} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private_cn.list
 
-      - name: Generate ProxyList
+      - name: Generate private_!cn
         run: |
-          curl -sSL ${ProxyList} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private_!cn.list
+          curl -sSL ${private_!cn} | grep -E '^(DOMAIN|DOMAIN-SUFFIX|DOMAIN-KEYWORD)' > ./domains/private_!cn.list
 
       - name: Generate Emby
         run: |
