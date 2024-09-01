@@ -128,31 +128,31 @@ jobs:
 
       - name: Generate Apple
         run: |
-          curl -sSL ${Apple} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/Apple-ip.list
+          curl -sSL ${Apple} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/Apple-IP.list
 
       - name: Generate ChinaDomain
         run: |
-          curl -sSL ${ChinaDomain} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/ChinaDomain-ip.list
+          curl -sSL ${ChinaDomain} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/ChinaDomain-IP.list
 
       - name: Generate GoogleFCM
         run: |
-          curl -sSL ${GoogleFCM} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/GoogleFCM-ip.list
+          curl -sSL ${GoogleFCM} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/GoogleFCM_IP.list
 
       - name: Generate LocalAreaNetwork
         run: |
-          curl -sSL ${LocalAreaNetwork} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/LocalAreaNetwork-ip.list
+          curl -sSL ${LocalAreaNetwork} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/LocalAreaNetwork-IP.list
 
       - name: Generate ProxyGFWlist
         run: |
-          curl -sSL ${ProxyGFWlist} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/ProxyGFWlist-ip.list
+          curl -sSL ${ProxyGFWlist} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/ProxyGFWlist-IP.list
 
       - name: Generate ProxyMedia
         run: |
-          curl -sSL ${ProxyMedia} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/ProxyMedia-ip.list
+          curl -sSL ${ProxyMedia} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/ProxyMedia-IP.list
 
       - name: Generate Telegram
         run: |
-          curl -sSL ${Telegram} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/Telegram-ip.list
+          curl -sSL ${Telegram} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/Telegram-IP.list
 
 
       - name: Git push assets to `domains` branch
