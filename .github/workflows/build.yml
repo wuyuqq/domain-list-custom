@@ -136,7 +136,7 @@ jobs:
 
       - name: Generate GoogleFCM
         run: |
-          curl -sSL ${GoogleFCM} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/GoogleFCM_IP.list
+          curl -sSL ${GoogleFCM} | grep -E '^(IP-CIDR|IP-CIDR6)' > ./domains/GoogleFCM-IP.list
 
       - name: Generate LocalAreaNetwork
         run: |
